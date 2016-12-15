@@ -1,0 +1,15 @@
+<!doctype html>
+<title>QiO Failure predictor<</title>
+{% block body %}{% endblock %}
+<div class="col-sm-8 col-sm-offset-2">
+  <br>
+  {% with messages = get_flashed_messages() %}
+  {% if messages %}
+  <ul class=flashes>
+    {% for message in messages %}
+    <div class="alert alert-danger" role="alert">{{ message }}</div>
+    {% endfor %}
+  </ul>
+  {% endif %}
+  {% endwith %}
+</div>

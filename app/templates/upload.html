@@ -1,0 +1,68 @@
+{% extends "layout.html" %}
+{% block body %}<!doctype html>
+<head>
+  <link href="static/bootstrap/css/bootstrap.min.css" rel="stylesheet" media="screen">
+</head>
+  <body>
+
+    <div class="container">
+      <div class="row">
+	<div class="col-sm-8 col-sm-offset-2">
+	  <a href="/logout/" class="btn btn-info pull-right" role="submit"> Log Out </a>
+	</div>
+      </div>
+    </div>
+
+    <div class="container">
+      <div class="row">
+	<div class="col-sm-8 col-sm-offset-2">
+	  <h1>Upload New Data Files</h1>
+	  <br>
+	  <form action="#" method="post" enctype="multipart/form-data" id="uploadForm" name="uploadForm">
+	    <div class="form-group">
+	      <label for="file_maintenance">Maintenance data</label>
+              <input type="file" class="form-control" placeholder="Upload Maintanance Data" name="file_maintenance" value="{{request.form.file_maintenance }}">
+	    </div>
+	    <br>
+	    <div class="form-group">
+	      <label for="file_production">Production data (zipped)</label>
+              <input type="file" class="form-control" placeholder="Upload Maintanance Data" name="file_production" value="{{request.form.file_production }}">
+	    </div>
+	    <br>
+	    <div class="form-group">
+	      <label for="file_incidents">Incidents data</label>
+              <input type="file" class="form-control" placeholder="Upload Maintanance Data" name="file_incidents" value="{{request.form.file_incidents }}">
+	    </div>
+	    <br>
+	    <div class="form-group">
+	      <label for="file_sensor">Sensor data (zipped)</label>
+              <input type="file" class="form-control" placeholder="Upload Sensor Data" name="file_sensor" value="{{request.form.file_sensor }}">
+	    </div>
+	    {% if error %}
+            <div class="alert alert-danger" role="alert"><strong>Error:</strong> {{ error }} </div>
+	      {% endif %}
+            <input class="btn btn-primary pull-right" type="submit" value="Upload All Files" >
+
+	  </form>
+	</div>
+	<img class="col-sm-3 col-sm-offset-4" width="40" src="{{ url_for('static',filename='loading.jpg') }}" id="loading" style="display:none"  >
+
+      </div>
+    </div>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js">  
+    </script>
+    <script type="text/javascript">
+      $(document).ready(function () {
+        $("#uploadForm").submit(function () {
+          $(".btn").attr("disabled", true);
+          $('#loading').show('fast');
+          return true;
+        });
+      });
+    </script>
+
+  </body>
+</html>
+
+{% endblock %}
